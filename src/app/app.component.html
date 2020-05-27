@@ -1,0 +1,59 @@
+<div class="container">
+    <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non est ex obcaecati aperiam, sunt eligendi id, molestias illum atque et voluptatem vel labore laudantium eaque, sapiente officiis. Magnam, possimus nostrum.
+    </div>
+
+    <div>
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="/assets/moto.png" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        hola 2
+    </div>
+    <div>
+        <div mwlResizable [ngStyle]="styleImage" class="rectangle" [enableGhostResize]="true" (resizeStart)="onResizeStart($event)" (resizeEnd)="onResizeEnd($event)" [resizeSnapGrid]="{ left: 10, right: 10 }" [resizeEdges]="{bottom: true, right: true}" [resizeCursorPrecision]="8"
+            [validateResize]="validate">
+            <img [ngStyle]="styleImage" src="/assets/moto.png" alt="imagen moto">
+            <div class="resize-handle-right" mwlResizeHandle [resizeEdges]="{ right: true }"></div>
+            <div class="resize-handle-diagonal"></div>
+            <div class="resize-handle-bottom" mwlResizeHandle [resizeEdges]="{ bottom: true }"></div>
+        </div>
+    </div>
+
+    <!--
+    <div>
+        <img mwlResizable [ngStyle]="styleImage" class="imagenclass" [enableGhostResize]="true" (resizeStart)="onResizeStart($event)" (resizeEnd)="onResizeEnd($event)" (resizing)="onResizing($event)" [resizeSnapGrid]="{ left: 10, right: 10 }" [resizeCursorPrecision]="8"
+            [resizeEdges]="{bottom: true, right: true}" [validateResize]="validate" src="/assets/moto.png" alt="imagen moto">
+    </div>
+    -->
+
+    <!--
+    <div mwlResizable class="rectangle" [ngStyle]="style" [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event)" [resizeSnapGrid]="{ left: 1, right: 1 }">
+        estoy aqui
+        <div class="resize-handle-top" mwlResizeHandle [resizeEdges]="{ top: true }"></div>
+        <div class="resize-handle-left" mwlResizeHandle [resizeEdges]="{ left: true }"></div>
+
+        <div class="resize-handle-bottom" mwlResizeHandle [resizeEdges]="{ bottom: true, right: true }"></div>
+    </div>
+    -->
+    sssssssss
+    <!--
+    <div class="rectangle" [ngStyle]="style" mwlResizable [validateResize]="validate" [enableGhostResize]="true" [resizeSnapGrid]="{ left: 1, right: 1 }" (resizeEnd)="onResizeEnd($event)">
+        <img src="/assets/moto.png" class="card-img" alt="...">
+
+    </div>
+    -->
+</div>
