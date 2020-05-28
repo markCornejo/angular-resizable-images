@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { ResizableModule } from 'angular-resizable-element';
+import { AngularResizeComponent } from './component/angular-resize/angular-resize.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AngularResizeComponent
   ],
   imports: [
     BrowserModule,
