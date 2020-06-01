@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 
 import { ResizeEvent } from 'angular-resizable-element';
 import { sizeImage } from './component/angular-resize/angular-resize.component';
@@ -8,17 +8,19 @@ import { sizeImage } from './component/angular-resize/angular-resize.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements  OnInit {
 
   title = 'prueba1';
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
   }
 
-  newSize(event: sizeImage){
+  /* cambio de tamaño de la imagen*/
+  newSize(event: sizeImage) {
     console.log(event);
   }
-
 
 
 }

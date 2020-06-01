@@ -1,0 +1,53 @@
+<div>
+    <div>
+        Pagina principal
+    </div>
+    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+        <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+            <dropzone class="dropzone-container" [config]="config" [message]="'Haga clic o arrastre las imágenes aquí para cargar'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (init)="onInitImage($event)" (removedFile)="onRemovedFile($event)"
+                fxLayout="row" fxLayoutAlign="start strech" fxFlex="auto"></dropzone>
+        </div>
+    </div>
+    <div>
+        <div>
+            dropzona
+        </div>
+        <div class="images-list d-flex flex-wrap justify-content-center">
+
+            <div id="preview-template" style="display: none;">
+                <div class="dz-preview dz-file-preview cus-preview">
+
+                    <div class="text-thumbnail-preview">
+                        <div class="text-right">
+                            <button id="btn-view-image-dropzone" type="button" class="btn btn-info btn-width-40"><i class="zmdi zmdi-download"></i></button>
+                            <button id="btn-trash-image-dropzone" type="button" class="btn btn-danger btn-width-40 ml-1" data-dz-remove><i class="zmdi zmdi-delete"></i></button>
+                        </div>
+                        <div class="img-thumbnail-preview">
+                            <img data-dz-thumbnail class="img-thumbnail" style="width: 250px;" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="progress dz-progress div-td">
+                            <div class="progress-bar dz-upload" data-dz-uploadprogress role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <div class="dz-success-mark d-none"><span>✔ Success </span></div>
+                                <div class="dz-error-mark d-none"><span>✘ Error</span></div>
+                            </div>
+                        </div>
+                        <div class="dz-progress div-td">
+                            <span class="dz-upload" data-dz-uploadprogress></span>
+                        </div>
+                        <div class="dz-error-message"><span data-dz-errormessage class="text-danger"></span></div>
+
+
+                    </div>
+                    <div>
+                        <div class="dz-filename div-td text-center" style="font-size: 11px;"><span data-dz-name></span></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="btn btn-success b-vermas">Ver más</button>
+        </div>
+    </div>
+</div>
