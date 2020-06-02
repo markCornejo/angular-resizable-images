@@ -10,6 +10,10 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { AngularDropzoneComponent } from './component/angular-dropzone/angular-dropzone.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatDialogModule} from '@angular/material/dialog';
+import { NgbModule, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 export const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -17,10 +21,7 @@ export const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   maxFilesize: 50,
   acceptedFiles: 'image/*',
   createImageThumbnails: true,
-
-
  };
-
 /*
   <div class="dz-details" (click)="prueba2();">
     <div class="dz-filename"><span data-dz-name></span></div>
@@ -32,8 +33,6 @@ export const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   <div class="dz-error-mark"><span>✘</span></div>
   <div class="dz-error-message"><span data-dz-errormessage></span></div>
 */
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,13 +42,17 @@ export const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   imports: [
     BrowserModule,
     ResizableModule,
-    DropzoneModule
+    DropzoneModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    MatDialogModule,
   ],
   providers: [
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG,
     },
+    NgbActiveModal
   ],
   bootstrap: [AppComponent]
 })

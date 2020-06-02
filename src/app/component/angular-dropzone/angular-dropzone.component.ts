@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DropzoneConfigInterface, DropzoneComponent } from 'ngx-dropzone-wrapper';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-angular-dropzone',
@@ -8,13 +10,16 @@ import { DropzoneConfigInterface, DropzoneComponent } from 'ngx-dropzone-wrapper
 })
 export class AngularDropzoneComponent implements OnInit {
 
+  dataExample = environment.dataimage;
+  datainit: any;
+
   public config: DropzoneConfigInterface = {
     clickable: true,
     // maxFiles: 2,
     autoReset: null,
     errorReset: null,
     cancelReset: null,
-    previewsContainer: '.images-list',
+    previewsContainer: '.images-list-dropzone',
     thumbnailWidth: 240,
     thumbnailHeight: 240,
     /*
@@ -29,7 +34,9 @@ export class AngularDropzoneComponent implements OnInit {
 
   @ViewChild(DropzoneComponent, { static: false }) componentRef?: DropzoneComponent;
 
-  constructor() { }
+  constructor(
+    private activeModal: NgbActiveModal,
+  ) { }
 
   ngOnInit(): void {
     /* colocar esta opcion para que funcione despues de cargar el .html*/
@@ -60,12 +67,42 @@ export class AngularDropzoneComponent implements OnInit {
     console.log('onRemovedFile', args);
   }
 
+  public onAddedFile(args: any): void {
+    console.log('onAddedFile', args);
+    /*
+    console.log(this.componentRef.files);
+    */
+    const docutags = document.getElementById('images-list-dropzone').querySelectorAll('.dz-preview');
+    const docDoc = Array.from(docutags);
+    const arrUlti = docDoc[docDoc.length - 1];
+
+    docutags[docDoc.length - 1].parentNode.removeChild(docutags[docDoc.length - 1]);
+
+    docDoc.pop();
+    docDoc.splice(1, 0, arrUlti);
+
+    // tslint:disable-next-line: max-line-length
+    document.getElementById('images-list-dropzone').insertBefore(arrUlti, document.getElementById('images-list-dropzone').firstChild);
+
+    const prueba = [...this.datainit.files];
+    // console.log(this.datainit.getAcceptedFiles());
+    /*
+    this.datainit.removeAllFiles();
+    this.datainit.files = prueba.reverse();
+    this.datainit.processQueue();
+    */
+  }
+
   public onInitImage(event: any) {
     console.log('onInitImage:', event);
+    this.datainit = event;
+    this.getImagesStore();
+
     event.on('thumbnail', (file) => {
       // console.log(file);
       file.previewElement.querySelector('.img-thumbnail-preview').addEventListener('click', () => {
         // alert(file.name);
+        this.activeModal.close(file);
       });
       // console.log(file.previewElement.querySelector('#btn-view-image-dropzone'));
       file.previewElement.querySelector('#btn-view-image-dropzone').addEventListener('click', () => {
@@ -93,5 +130,17 @@ export class AngularDropzoneComponent implements OnInit {
       file.previewElement.previewTemplate;
     });
     */
+  }
+
+  // Aqui colocar servicio de GET obtener imagenes
+  getImagesStore() {
+    // this.config.
+    // console.log(this.dataExample);
+    this.dataExample.forEach((el) => {
+      // console.log(el.url);
+      this.datainit.options.addedfile.call(this.datainit, el);
+      this.datainit.options.thumbnail.call(this.datainit, el, el.url);
+    });
+
   }
 }

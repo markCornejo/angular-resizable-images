@@ -1,4 +1,4 @@
 <div class="container">
-    <app-angular-dropzone></app-angular-dropzone>
-    <app-angular-resize [intoClass]="''" [src]="'/assets/moto.png'" (newSize)="newSize($event);"></app-angular-resize>
+    <button mat-button (click)="openDialog()">Launch dialog</button>
+    <app-angular-resize [intoClass]="''" [src]="src" (newSize)="newSize($event);" [initStyle]="initStyle"></app-angular-resize>
 </div>

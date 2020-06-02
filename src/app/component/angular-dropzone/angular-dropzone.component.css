@@ -66,11 +66,11 @@
     height: 100%;
 }
 
-.images-list {
+.images-list-dropzone {
     position: relative;
 }
 
-.images-list .b-vermas {
+.images-list-dropzone .b-vermas {
     position: absolute;
     bottom: -50px;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ResizeEvent } from 'angular-resizable-element';
 
 export interface sizeImage {
@@ -12,10 +12,11 @@ export interface sizeImage {
   styleUrls: ['./angular-resize.component.css']
 })
 
-export class AngularResizeComponent implements OnInit {
+export class AngularResizeComponent implements OnInit, OnChanges {
 
   @Input() src = '';
   @Input() intoClass: any;
+  @Input() initStyle: any;
   @Output() newSize = new EventEmitter<sizeImage>();
 
   public styleImage: object = {};
@@ -50,6 +51,13 @@ export class AngularResizeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.styleImage = this.initStyle;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.src.previousValue) {
+      this.styleImage = this.initStyle;
+    }
   }
 
   onResizeStart(event: ResizeEvent): void {
