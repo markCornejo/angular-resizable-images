@@ -1,6 +1,5 @@
 <!-- DropZone.js establico con modal de https://ng-bootstrap.github.io/ -->
 <div>
-
     <div class="modal-header">
         <h1 class="modal-title mb-0" id="modal-basic-title">Galeria de imagenes</h1>
         <button type="button" class="close" aria-label="Close">
@@ -8,7 +7,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <div>
+        <div class="mb-5">
             <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
                 <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
                     <dropzone class="dropzone-container" [config]="config" [message]="'Haga clic o arrastre las imágenes aquí para cargar'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)" (init)="onInitImage($event)" (removedFile)="onRemovedFile($event)"
@@ -29,12 +28,15 @@
                                     <button id="btn-view-image-dropzone" type="button" class="btn btn-info btn-width-40"><i class="zmdi zmdi-download"></i></button>
                                     <button id="btn-trash-image-dropzone" type="button" class="btn btn-danger btn-width-40 ml-1" data-dz-remove><i class="zmdi zmdi-delete"></i></button>
                                 </div>
-                                <div class="img-thumbnail-preview">
+                                <div class="img-dropzone-loading text-center" style="width: 250px;">
+                                    <i class="zmdi zmdi-spinner zmdi-hc-spin zmdi-hc-5x"></i>
+                                </div>
+                                <div class="img-thumbnail-preview d-none">
                                     <img data-dz-thumbnail class="img-thumbnail" style="width: 250px;" />
                                 </div>
                             </div>
                             <div>
-                                <div class="progress dz-progress div-td">
+                                <div class="progress dz-progress d-none div-td">
                                     <div class="progress-bar dz-upload" data-dz-uploadprogress role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                         <div class="dz-success-mark d-none"><span>✔ Success </span></div>
                                         <div class="dz-error-mark d-none"><span>✘ Error</span></div>
@@ -52,7 +54,10 @@
 
                     </div>
 
-                    <button class="btn btn-success b-vermas">Ver más</button>
+                    <div class="b-vermas">
+                        <button class="btn btn-success buttn" (click)="vermas()">Ver más</button>
+                    </div>
+
                 </div>
             </div>
         </div>

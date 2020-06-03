@@ -40,6 +40,7 @@ export class AppComponent implements  OnInit {
       size: 'xl'
     })
     .result.then((result) => {
+      console.log(result);
       this.src = result.dataURL;
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -57,6 +58,4 @@ export class AppComponent implements  OnInit {
       return `with: ${reason}`;
     }
   }
-
-
 }

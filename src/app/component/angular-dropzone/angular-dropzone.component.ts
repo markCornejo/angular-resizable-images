@@ -10,8 +10,9 @@ import { environment } from '../../../environments/environment';
 })
 export class AngularDropzoneComponent implements OnInit {
 
-  dataExample = environment.dataimage;
-  datainit: any;
+  dataExample = environment.dataimage; // data ejemplo para cargar imagenes
+  datainit: any; // informacion inicial y total de la instancia dropzone
+
 
   public config: DropzoneConfigInterface = {
     clickable: true,
@@ -58,17 +59,20 @@ export class AngularDropzoneComponent implements OnInit {
   public onUploadSuccess(args: any): void {
     console.log('onUploadSuccess:', args);
     args[0].previewElement.querySelector('.dz-success-mark').classList.remove('d-none');
+    args[0].previewElement.querySelector('.img-dropzone-loading').classList.add('d-none');
+    args[0].previewElement.querySelector('.img-thumbnail-preview').classList.remove('d-none');
     setTimeout(() => {
       args[0].previewElement.querySelector('.dz-progress').classList.add('d-none');
     }, (5000));
   }
 
   public onRemovedFile(args: any): void {
-    console.log('onRemovedFile', args);
+    // console.log('onRemovedFile', args);
   }
 
   public onAddedFile(args: any): void {
     console.log('onAddedFile', args);
+    args.previewElement.querySelector('.dz-progress').classList.remove('d-none');
     /*
     console.log(this.componentRef.files);
     */
@@ -96,9 +100,9 @@ export class AngularDropzoneComponent implements OnInit {
   public onInitImage(event: any) {
     console.log('onInitImage:', event);
     this.datainit = event;
-    this.getImagesStore();
 
-    event.on('thumbnail', (file) => {
+
+    this.datainit.on('thumbnail', (file) => {
       // console.log(file);
       file.previewElement.querySelector('.img-thumbnail-preview').addEventListener('click', () => {
         // alert(file.name);
@@ -130,17 +134,37 @@ export class AngularDropzoneComponent implements OnInit {
       file.previewElement.previewTemplate;
     });
     */
+    this.getImagesStore(0);
   }
 
   // Aqui colocar servicio de GET obtener imagenes
-  getImagesStore() {
+  getImagesStore(ind: number) {
     // this.config.
     // console.log(this.dataExample);
+
+    // aqui colocar el servicio que desvuelve las imagenes
+    for (let index = ind; index < 4; index++) {
+      // this.datainit.options.addedfile.call(this.datainit, this.dataExample[index]);
+      this.datainit.emit('addedfile', this.dataExample[index]);
+      this.datainit.files.push(this.dataExample[index]);
+      this.datainit.emit('thumbnail', this.dataExample[index], this.dataExample[index].dataURL);
+      this.datainit.emit('complete', this.dataExample[index]);
+      this.datainit.files[index].previewElement.querySelector('.img-dropzone-loading').classList.add('d-none');
+      this.datainit.files[index].previewElement.querySelector('.img-thumbnail-preview').classList.remove('d-none');
+    }
+
+    /*
     this.dataExample.forEach((el) => {
       // console.log(el.url);
       this.datainit.options.addedfile.call(this.datainit, el);
       this.datainit.options.thumbnail.call(this.datainit, el, el.url);
     });
-
+    */
   }
+
+  vermas() {
+    this.getImagesStore(0);
+  }
+
+
 }

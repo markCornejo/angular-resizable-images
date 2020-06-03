@@ -75,6 +75,10 @@
     bottom: -50px;
 }
 
+.images-list-dropzone .b-vermas .buttn {
+    position: relative;
+}
+
 .cus-preview {
     width: 250px;
     margin: 0 20px 13px 20px;

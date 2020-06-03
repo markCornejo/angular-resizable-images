@@ -12,7 +12,6 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { AngularDropzoneComponent } from './component/angular-dropzone/angular-dropzone.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatDialogModule} from '@angular/material/dialog';
 import { NgbModule, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 export const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -45,7 +44,6 @@ export const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DropzoneModule,
     BrowserAnimationsModule,
     NgbModule,
-    MatDialogModule,
   ],
   providers: [
     {
